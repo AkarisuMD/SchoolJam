@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1247736612025190020}
   - component: {fileID: 3020338614487709195}
   m_Layer: 0
-  m_Name: ExclamationPoint
+  m_Name: Animate_ExclamationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
