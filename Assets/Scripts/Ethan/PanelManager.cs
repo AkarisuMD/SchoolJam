@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
@@ -39,26 +40,34 @@ public class PanelManager : Singleton<PanelManager>
         isPanelOpen = false;
     }
 
-    public void Upgrade(CafeReserveUpgrade cafeReserveUpgrade)
-    {
-        if (cost < resourceManager.Money)
-        {
-            cafeReserveUpgrade.LevelUp();
-            resourceManager.Money = resourceManager.Money - cost;
-        }
-        else
-        {
-            Debug.Log("non t'es pauvre");
-        }
-    }
-
+    
+    private CafeReserveUpgrade currentTypeUpgrade;
     public void Objcafe (CafeObject cafeType, CafeReserveUpgrade cafeReserveUpgrade)
     {
+        currentTypeUpgrade = cafeReserveUpgrade;
         cafeType = cafeReserveUpgrade.cafeType; 
         resource.sprite = cafeType.spriteResource;
         cafeName.text = cafeType.cafename;
         cafeCapacity.text = cafeType.cafeMaxCapacity.ToString();
         levelText.text = "Level:" + cafeType.Level.ToString(); 
+    }
+
+    public void LevelUp()
+    {
+        cost = currentTypeUpgrade.cafeType.Level * 100 + 100;
+        if (cost < resourceManager.Money)
+        {
+            resourceManager.Money = resourceManager.Money - cost;
+            currentTypeUpgrade.cafeType.Level = currentTypeUpgrade.cafeType.Level + 1;
+            levelText.text = "Level:" + currentTypeUpgrade.cafeType.Level.ToString();
+            currentTypeUpgrade.cafeType.cafeMaxCapacity = currentTypeUpgrade.cafeType.cafeMaxCapacity + 1;
+            cafeCapacity.text = currentTypeUpgrade.cafeType.cafeMaxCapacity.ToString();
+
+        }
+        else
+        {
+            Debug.Log("pas assez d'argent");
+        }
     }
 
 }
