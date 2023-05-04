@@ -17,13 +17,15 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
     public GameObject firstInQueue;
     public GameObject guestWithMeal;
     public GameObject guestleaving;
+    public GameObject waitingTable;
 
     public List<GameObject> waitingLine;
     public List<GameObject> requestLine;
     public List<GameObject> onTable;
     public List<GameObject> allTables;
+    public List<GameObject> waitingOnTables;
     public int[] originTableKey;
-    public int[] currentTableKey;
+    public float[] currentTableKey;
     public int wantedTable;
     public int findingFreeTableTries;
 
@@ -33,12 +35,13 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
     public float spawnTime;
     public float averageSpawnTime;
     public float nextSpawnTime;
-    public float reputaionModifier;
+    public float reputationModifier;
+    public int x;
 
     public void Start()
     {
-        originTableKey = new int[8] { 4, 1, 6, 7, 2, 8, 3, 5 };
-        currentTableKey = originTableKey;
+        originTableKey = new int[8] { 4, 2, 7, 6, 1, 0, 5, 3 };
+        currentTableKey = new float[8] { 4, 2, 7, 6, 1, 0, 5, 3 };
     }
 
     public void Update()
@@ -51,7 +54,7 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
         if (spawnTime > averageSpawnTime)
         {
             spawnTime = 0;
-            newGuest = Instantiate(randomGuest);
+            newGuest = Instantiate(randomGuest, this.gameObject.transform.position, this.gameObject.transform.rotation);
             waitingLine.Add(newGuest);
             newGuest.GetComponent<GuestBehaviour>().placeInLine = waitingLine.Count - 1;
         }
@@ -66,7 +69,7 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
     {
         try
         {
-            if (requestLine.Count >= maxGuestsInRequestLine) //*****************************
+            if (requestLine.Count >= maxGuestsInRequestLine)
             {
                 newGuest.GetComponent<GuestBehaviour>().placeInLine = waitingLine.Count;
             }
@@ -88,7 +91,7 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
                 firstInQueue.GetComponent<GuestBehaviour>().placeInLine = requestLine.Count - 1;
             }
 
-            if (requestLine.Count < maxGuestsInRequestLine) //*****************************
+            if (requestLine.Count < maxGuestsInRequestLine)
             {
                 for (int i = 0; i < waitingLine.Count; i++)
                 {
@@ -109,25 +112,41 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
                 if (requestLine[i].GetComponent<GuestBehaviour>().state == 3)
                 {
                     guestWithMeal = requestLine[i];
-                    requestLine.Remove(guestWithMeal);
+                    wantedTable = (int)UnityEngine.Random.Range(0, 7);
+
+                    x = 0;
+                    while (currentTableKey[wantedTable] > 99 && x <= 8)
+                    {
+                        wantedTable = originTableKey[wantedTable];
+                        x++;
+                        Debug.Log("LoopIsRunning");
+                        Debug.Log(x);
+                    }
+
+                    if (waitingOnTables.Contains(guestWithMeal) == false)
+                    {
+                        waitingOnTables.Add(guestWithMeal);
+                        guestWithMeal.GetComponent<GuestBehaviour>().table = waitingTable;
+                    }
+
+                    if (waitingOnTables.IndexOf(guestWithMeal) == 0 && x <= 8)
+                    {
+                        requestLine.Remove(guestWithMeal);
+                        waitingOnTables.Remove(guestWithMeal);
+                        guestWithMeal.GetComponent<GuestBehaviour>().table = allTables[wantedTable];
+                        currentTableKey[wantedTable] = ((float)originTableKey[wantedTable] + 1) * 100 + guestWithMeal.GetComponent<GuestBehaviour>().guestID;
+                    }
+
+                    x = 0;
+
+                    if (onTable.Contains(guestWithMeal) == false && waitingOnTables.Contains(guestWithMeal) == false)
+                    {
+                        onTable.Add(guestWithMeal);
+                    }
 
                     for (int j = 0; j < requestLine.Count; j++)
                     {
                         requestLine[j].GetComponent<GuestBehaviour>().placeInLine = j;
-                    }
-
-                    onTable.Add(guestWithMeal);
-
-                    if (onTable.Count <= 8)
-                    {
-                        wantedTable = currentTableKey[(int)UnityEngine.Random.Range(0, 8)];
-                        while (currentTableKey[wantedTable] > 99)
-                        {
-                            wantedTable = originTableKey[wantedTable];
-                        }
-                        Debug.Log(wantedTable);
-                        guestWithMeal.GetComponent<GuestBehaviour>().table = allTables[wantedTable];
-                        currentTableKey[i] = onTable.IndexOf(guestWithMeal) * 100 + wantedTable;
                     }
                 }
             }
@@ -145,13 +164,19 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
                 if (onTable[i].GetComponent<GuestBehaviour>().state == 4)
                 {
                     guestleaving = onTable[i];
-                    while (currentTableKey[wantedTable] >= onTable.IndexOf(guestleaving) * 100 &&
-                          currentTableKey[wantedTable] <= onTable.IndexOf(guestleaving) * 100 + 99)
+                    wantedTable = (int)UnityEngine.Random.Range(0, 7);
+                    x = 0;
+
+                    while ( (originTableKey[wantedTable] + 1) * 100 + guestleaving.GetComponent<GuestBehaviour>().guestID != currentTableKey[wantedTable] && x <= 8)
                     {
                         wantedTable = originTableKey[wantedTable];
+                        x++;
+                        Debug.Log((originTableKey[wantedTable] + 1) * 100 + guestleaving.GetComponent<GuestBehaviour>().guestID);
+                        Debug.Log(currentTableKey[wantedTable]);
                     }
                     onTable.Remove(guestleaving);
                     currentTableKey[wantedTable] = originTableKey[wantedTable];
+
                 }
             }
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GuestBehaviour : MonoBehaviour
 {
@@ -26,6 +27,7 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
     public GameObject waitingLine;
     public GameObject requestLine;
     public GameObject table;
+    public GameObject exitDoor;
 
 
     public float speed;
@@ -46,10 +48,15 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
     public int mealGeneration;
     public float mealComplexityMultiplier;
 
+    public float guestID;
+
     public void Start()
     {
-        waitingLine = GameObject.Find("trgt1").gameObject;
-        requestLine = GameObject.Find("trgt2").gameObject;
+        waitingLine = GameObject.FindGameObjectWithTag("WaitingLine").gameObject;
+        requestLine = GameObject.FindGameObjectWithTag("RequestingLine").gameObject;
+        exitDoor = GameObject.FindGameObjectWithTag("ExitDoor").gameObject;
+
+        guestID = (float)UnityEngine.Random.Range(0, 99);
     }
 
     public void Update()
@@ -71,7 +78,8 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
             this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z), 
                                                                      new Vector3(waitingLine.gameObject.transform.position.x, 0, waitingLine.gameObject.transform.position.z + placeInLine * guestSpacing), speed / 100);
 
-            if (new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z) == new Vector3(waitingLine.gameObject.transform.position.x, 0, waitingLine.gameObject.transform.position.z))
+            if (new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z) == 
+                new Vector3(waitingLine.gameObject.transform.position.x, 0, waitingLine.gameObject.transform.position.z))
             {
                 state = nextState;
             }
@@ -81,24 +89,67 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
         {
             this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z), 
                                                                      new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, 0, requestLine.gameObject.transform.position.z), speed / 100);
+            
+            if (new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z) ==
+                new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, 0, requestLine.gameObject.transform.position.z))
+            {
+                this.gameObject.transform.rotation = waitingLine.gameObject.transform.rotation;
+
+            }
+            else
+            {
+                this.gameObject.transform.rotation = requestLine.gameObject.transform.rotation;
+            }
             //la commande a été accepté
         }
 
         if (state == 2)
         {
+
             //wait avec la commande
         }
 
         if (state == 3)
         {
             //go table
-            this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z),
-                                                                     new Vector3(table.gameObject.transform.position.x, 0, table.gameObject.transform.position.z), speed / 100);
+            try
+            {
+                if (table.tag != "WaitingTable")
+                {
+                    this.gameObject.transform.rotation = table.gameObject.transform.rotation;
+                    this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z),
+                                                                         new Vector3(table.gameObject.transform.position.x, 0, table.gameObject.transform.position.z), speed / 100);
+                }
+                else
+                {
+                    this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z),
+                                                                     new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, 0, requestLine.gameObject.transform.position.z), speed / 100);
+
+                }
+            }
+            catch(UnassignedReferenceException) { }
+
         }
 
         if (state == 4)
         {
-            //gtfo
+            if (new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z) == 
+                new Vector3(table.gameObject.transform.position.x, 0, table.gameObject.transform.position.z))
+            {
+                //SATISFACTION
+                Debug.Log("Satisfaction");
+                this.gameObject.transform.rotation = exitDoor.gameObject.transform.rotation;
+            }
+            
+            this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z),
+                                                                         new Vector3(exitDoor.gameObject.transform.position.x, 0, exitDoor.gameObject.transform.position.z), speed / 100);
+
+
+            if (new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z) == 
+                new Vector3(exitDoor.gameObject.transform.position.x, 0, exitDoor.gameObject.transform.position.z))
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }
