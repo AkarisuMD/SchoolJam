@@ -60,6 +60,8 @@ public class PanelManager : Singleton<PanelManager>
             resourceManager.Money = resourceManager.Money - cost;
             currentTypeUpgrade.cafeType.Level = currentTypeUpgrade.cafeType.Level + 1;
             levelText.text = "Level:" + currentTypeUpgrade.cafeType.Level.ToString();
+            currentTypeUpgrade.cafeType.cafeMaxCapacity = currentTypeUpgrade.cafeType.cafeMaxCapacity + 1;
+            cafeCapacity.text = currentTypeUpgrade.cafeType.cafeMaxCapacity.ToString();
 
         }
         else
