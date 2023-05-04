@@ -5,6 +5,7 @@ using UnityEngine;
 public class Reserve : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject panel_Ressources;
     private bool panelIsOpen;
     public CafeObject cafeRegular;
     public CafeObject cafeBlond;
@@ -87,6 +88,7 @@ public class Reserve : MonoBehaviour
         { 
             panelIsOpen = true;
             panel.SetActive(true);
+            panel_Ressources.SetActive(false);
         }
     }
 
@@ -94,5 +96,6 @@ public class Reserve : MonoBehaviour
     {
         panel.SetActive(false);
         panelIsOpen = false;
+        panel_Ressources.SetActive(true);
     }
 }

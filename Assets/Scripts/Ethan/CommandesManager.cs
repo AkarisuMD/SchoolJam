@@ -26,7 +26,7 @@ public class CommandesManager : Singleton<CommandesManager>
     
 
     public GameObject etiquette;
-    public void NewCommand()
+    public void NewCommand(GuestBehaviour gb)
     {
 
         regularcoffee = Random.Range(0, 3);
@@ -46,6 +46,8 @@ public class CommandesManager : Singleton<CommandesManager>
             Muffin = painAuChocolat,
             Donut = donut,
         };
+
+        gb.commande = cmd;
 
         if (regularcoffee == 0 && blondCoffee == 0 && decaCoffee == 0 && donut == 0 && croissant == 0 && painAuChocolat == 0) 
         {
@@ -82,7 +84,7 @@ public class CommandesManager : Singleton<CommandesManager>
         middleManEtiquette.tempText = commandeString;
 
 
-        DialogueManager.Instance.CallDialogue(ClientType.FILLE, cmd);
+        DialogueManager.Instance.CallDialogue(gb, cmd);
 
     }
 }
