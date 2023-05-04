@@ -401,6 +401,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SK_Chara
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: faaca3c1eec0cb34cba6cde61cb632a2,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ed42c43dbdd7d8f4b998ffd8bdc6a2ee, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
