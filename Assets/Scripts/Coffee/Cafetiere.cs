@@ -39,14 +39,17 @@ public class Cafetiere : Singleton<Cafetiere>
         panel.SetActive(true);
 
 
-        // IF IN STOCK1
-        // Choice1Image.color = Color.gray;
+        if (ResourceManager.Instance.RegularCoffee <= 0)
+            Choice1Image.color = Color.gray;
+        else Choice1Image.color = Color.white;
 
-        // IF IN STOCK2
-        // Choice2Image.color = Color.gray;
+        if (ResourceManager.Instance.BlondCoffee <= 0)
+            Choice2Image.color = Color.gray;
+        else Choice2Image.color = Color.white;
 
-        // IF IN STOCK3
-        // Choice3Image.color = Color.gray;
+        if (ResourceManager.Instance.DecaCoffee <= 0)
+            Choice3Image.color = Color.gray;
+        else Choice3Image.color = Color.white;
 
     }
 
@@ -58,7 +61,8 @@ public class Cafetiere : Singleton<Cafetiere>
 
     public void MakeCoffee1()
     {
-        // IS IN STOCK
+        if (ResourceManager.Instance.RegularCoffee <= 0) return;
+        ResourceManager.Instance.RegularCoffee -= 1;
 
         int a = 0;
         panel.SetActive(false);
@@ -66,7 +70,8 @@ public class Cafetiere : Singleton<Cafetiere>
     }
     public void MakeCoffee2()
     {
-        // IS IN STOCK
+        if (ResourceManager.Instance.BlondCoffee <= 0) return;
+        ResourceManager.Instance.BlondCoffee -= 1;
 
         int a = 1;
         panel.SetActive(false);
@@ -74,7 +79,8 @@ public class Cafetiere : Singleton<Cafetiere>
     }
     public void MakeCoffee3()
     {
-        // IS IN STOCK
+        if (ResourceManager.Instance.DecaCoffee <= 0) return;
+        ResourceManager.Instance.DecaCoffee -= 1;
 
         int a = 2;
         panel.SetActive(false);

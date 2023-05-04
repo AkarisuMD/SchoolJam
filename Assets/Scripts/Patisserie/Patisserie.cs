@@ -42,14 +42,17 @@ public class Patisserie : Singleton<Patisserie>
         panel.SetActive(true);
 
 
-        // IF IN STOCK1
-        // Choice1Image.color = Color.gray;
+        if (ResourceManager.Instance.croissant <= 0)
+            Choice1Image.color = Color.gray;
+        else Choice1Image.color = Color.white;
 
-        // IF IN STOCK2
-        // Choice2Image.color = Color.gray;
+        if (ResourceManager.Instance.muffin <= 0)
+            Choice2Image.color = Color.gray;
+        else Choice2Image.color = Color.white;
 
-        // IF IN STOCK3
-        // Choice3Image.color = Color.gray;
+        if (ResourceManager.Instance.donut <= 0)
+            Choice3Image.color = Color.gray;
+        else Choice3Image.color = Color.white;
     }
 
     public void Cancel()
@@ -60,25 +63,28 @@ public class Patisserie : Singleton<Patisserie>
 
     public void MakePatisserie1()
     {
-        // IS IN STOCK
+        if (ResourceManager.Instance.croissant <= 0)
+            ResourceManager.Instance.croissant -= 1;
 
-        int a = 0;
+            int a = 0;
         panel.SetActive(false);
         StartCoroutine(PreparationWaiting(a));
     }
     public void MakePatisserie2()
     {
-        // IS IN STOCK
+        if (ResourceManager.Instance.muffin <= 0)
+            ResourceManager.Instance.muffin -= 1;
 
-        int a = 1;
+            int a = 1;
         panel.SetActive(false);
         StartCoroutine(PreparationWaiting(a));
     }
     public void MakePatisserie3()
     {
-        // IS IN STOCK
+        if (ResourceManager.Instance.donut <= 0)
+            ResourceManager.Instance.donut -= 1;
 
-        int a = 2;
+            int a = 2;
         panel.SetActive(false);
         StartCoroutine(PreparationWaiting(a));
     }
