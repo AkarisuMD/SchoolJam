@@ -56,7 +56,7 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
         requestLine = GameObject.FindGameObjectWithTag("RequestingLine").gameObject;
         exitDoor = GameObject.FindGameObjectWithTag("ExitDoor").gameObject;
 
-        guestID = (float)UnityEngine.Random.Range(0, 99);
+        guestID = (float)UnityEngine.Random.Range(0, 99999);
     }
 
     public void Update()
