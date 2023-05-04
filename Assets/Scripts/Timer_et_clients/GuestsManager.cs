@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuestsManager : MonoBehaviour
+public class GuestsManager : Singleton<GuestsManager>
 {
     /*
  * array avec les clients [] (comme monstres VS)
@@ -38,10 +38,25 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
     public float reputationModifier;
     public int x;
 
+    public Commande commandeToGive;
+
     public void Start()
     {
         originTableKey = new int[8] { 4, 2, 7, 6, 1, 0, 5, 3 };
         currentTableKey = new float[8] { 4, 2, 7, 6, 1, 0, 5, 3 };
+    }
+
+    public void MakeNewCommandeToGive()
+    {
+        commandeToGive = new()
+        {
+            RegularCoffee = 0,
+            BlondCoffee = 0,
+            DecaCoffee = 0,
+            Croissant = 0,
+            Muffin = 0,
+            Donut = 0,
+        };
     }
 
     public void Update()

@@ -42,16 +42,34 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
     public int placeInLine;
     public float guestSpacing;
 
+    [Range (0.5f, 2f)]
     public float satisfaction;
 
-    public string[] meal;
     public int mealGeneration;
     public float mealComplexityMultiplier;
 
     public float guestID;
 
+    public ClientType clientType;
+
+    public Commande commande;
+
     public void Start()
     {
+
+        commandesManager = CommandesManager.Instance;
+        resourceManager = ResourceManager.Instance;
+
+        int rng = UnityEngine.Random.Range(0, 1);
+        if (rng == 0 )
+        {
+            clientType = ClientType.GARCON;
+        }
+        else
+        {
+            clientType = ClientType.FILLE;
+        }
+
         waitingLine = GameObject.FindGameObjectWithTag("WaitingLine").gameObject;
         requestLine = GameObject.FindGameObjectWithTag("RequestingLine").gameObject;
         exitDoor = GameObject.FindGameObjectWithTag("ExitDoor").gameObject;
@@ -103,6 +121,7 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
             //la commande a été accepté
         }
 
+
         if (state == 2)
         {
 
@@ -151,5 +170,50 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
                 Destroy(this.gameObject);
             }
         }
+    }
+
+
+
+    private void OnMouseUp()
+    {
+        if (state == 1)
+            GetNewCommand();
+
+        if (state == 2)
+        {
+            Commande _commande = GuestsManager.Instance.commandeToGive;
+
+            bool regu = _commande.RegularCoffee >= commande.RegularCoffee;
+            bool blond = _commande.BlondCoffee >= commande.BlondCoffee;
+            bool deca = _commande.DecaCoffee >= commande.DecaCoffee;
+            bool crois = _commande.Croissant >= commande.Croissant;
+            bool muf = _commande.Muffin >= commande.Muffin;
+            bool don = _commande.Donut >= commande.Donut;
+
+            if (!regu || !blond || !deca || !crois || !muf || !don) satisfaction = 0.5f;
+
+
+
+            GuestsManager.Instance.MakeNewCommandeToGive();
+            state = 3;
+        }
+    }
+
+    public CommandesManager commandesManager;
+    public ResourceManager resourceManager;
+    public float price = 0;
+
+
+    private void GetNewCommand()
+    {
+        commandesManager.NewCommand(this);
+        price = commandesManager.regularCoffeePrice * commandesManager.regularcoffee
+            + commandesManager.decaCoffeePrice * commandesManager.decaCoffee
+            + commandesManager.blondCoffeePrice * commandesManager.blondCoffee
+            + commandesManager.donutPrice * commandesManager.donut
+            + commandesManager.painAuChocolatPrice * commandesManager.painAuChocolat
+            + commandesManager.croissantPrice * commandesManager.croissant;
+        price = price * resourceManager.Reputation;
+        resourceManager.Money += Mathf.CeilToInt(price);
     }
 }
