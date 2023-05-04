@@ -18,7 +18,7 @@ public class Sc_Heritier : ScriptableObject
     /// <summary>
     /// statistique du personnage.
     /// </summary>
-    public List<GameStats> stats;
+    public GameStats stats;
 
     /// <summary>
     /// Quelle bonus donne le personnage (en fonction des stats)
