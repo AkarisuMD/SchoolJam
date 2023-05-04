@@ -68,7 +68,7 @@ Material:
     m_Floats:
     - _AllIsFullRandom: 0
     - _ChangeColorWhileMoving: 0
-    - _ColorRandomized: 0.8
+    - _ColorRandomized: 0.7
     - _Couleur_Globale: 10.37
     - _Float: 0.28
     - _HasTexture: 0
