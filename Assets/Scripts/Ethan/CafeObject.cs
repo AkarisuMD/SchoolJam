@@ -26,7 +26,8 @@ public class CafeObject : ScriptableObject
     public string cafename;
     public Sprite spriteResource;
     public Sprite sprite;
-    public float cafeStorage;
+    public float actualResource
+       ;
     public float cafeMaxCapacity;
 
 }
