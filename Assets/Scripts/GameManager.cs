@@ -197,6 +197,8 @@ public class GameManager : Singleton<GameManager>
 
         // spawn le choix des heritiers.
         goChoixHeritier = Instantiate(Resources.Load<GameObject>("Menu/ChoixHeritier"));
+
+        // reset level cafe
     }
 
 #endregion
