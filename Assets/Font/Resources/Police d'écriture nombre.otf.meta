@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a9f7c392c8552794d8317c2a15d3015f
+guid: c9dd27b2a9e1eda43b998a7bb61d7053
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Workshoup
+  - Police Decriture Nombre
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
