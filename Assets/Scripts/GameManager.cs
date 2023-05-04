@@ -17,6 +17,12 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public Cursor_Controller cursorInputActions;
 
+
+    /// <summary>
+    /// Current heritier of the coffee.
+    /// </summary>
+    public Sc_Heritier heritier;
+
     #endregion
     //==============================================================================================================
 
@@ -31,6 +37,8 @@ public class GameManager : Singleton<GameManager>
     #region PRIVATE
     //==============================================================================================================
 
+    #region cursor
+
     private string path_Cursor_Normal = "Template/Cursor/Normal_Cursor";
     private string path_Cursor_Click = "Template/Cursor/Click_Cursor";
 
@@ -39,6 +47,11 @@ public class GameManager : Singleton<GameManager>
 
     private Texture2D cursor_Normal;
     private Texture2D cursor_Click;
+
+    #endregion
+
+    // panel of the choice of heritier.
+    private GameObject goChoixHeritier;
 
     #endregion
     //==============================================================================================================
@@ -60,6 +73,11 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        OnNewDay();
+    }
+
     private void OnApplicationQuit()
     {
         SaveSettings();
@@ -72,6 +90,18 @@ public class GameManager : Singleton<GameManager>
     #region PUBLIC FONCTION
     //==============================================================================================================
 
+    /// <summary>
+    /// Heritier choice of the player.
+    /// </summary>
+    /// <param name="sc_Heritier"></param>
+    public void SelectHeritier(Sc_Heritier sc_Heritier)
+    {
+        heritier = sc_Heritier;
+        Destroy(goChoixHeritier);
+
+        // start game
+    }
+
     #endregion
     //==============================================================================================================
 
@@ -79,6 +109,7 @@ public class GameManager : Singleton<GameManager>
     #region PRIVATE FONCTION
     //==============================================================================================================
 
+    #region cursor
     /// <summary>
     /// Get cursor texture.
     /// </summary>
@@ -99,7 +130,9 @@ public class GameManager : Singleton<GameManager>
     }
     private void OnClickStarted() { if (Cursor.visible) Cursor.SetCursor(cursor_Click, offset_Cursor, cursorMode); }
     private void OnClickCanceled() { if (Cursor.visible) Cursor.SetCursor(cursor_Normal, offset_Cursor, cursorMode); }
+    #endregion
 
+    #region settings
     /// <summary>
     /// Load settings from player pref.
     /// </summary>
@@ -154,6 +187,19 @@ public class GameManager : Singleton<GameManager>
     }
 
     #endregion
+
+    /// <summary>
+    /// Quand une nouvelle journée démare (ou au commencement de la partie)
+    /// </summary>
+    private void OnNewDay()
+    {
+        // animation de journée
+
+        // spawn le choix des heritiers.
+        goChoixHeritier = Instantiate(Resources.Load<GameObject>("Menu/ChoixHeritier"));
+    }
+
+#endregion
     //==============================================================================================================
 
 
