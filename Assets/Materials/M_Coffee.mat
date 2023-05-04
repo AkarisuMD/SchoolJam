@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cofe
+  m_Name: M_Coffee
   m_Shader: {fileID: -6465566751694194690, guid: da0b3228dd901354fb0e4c479f69faad,
     type: 3}
   m_Parent: {fileID: 0}

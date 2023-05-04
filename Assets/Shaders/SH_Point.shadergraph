@@ -11,9 +11,6 @@
         },
         {
             "m_Id": "e2bca321bb98457ca30f1d583a931b57"
-        },
-        {
-            "m_Id": "7d9537470dee4af884c87bd4e2804f9e"
         }
     ],
     "m_Keywords": [],
@@ -539,9 +536,6 @@
         },
         {
             "m_Id": "e2bca321bb98457ca30f1d583a931b57"
-        },
-        {
-            "m_Id": "7d9537470dee4af884c87bd4e2804f9e"
         }
     ]
 }
@@ -1005,34 +999,6 @@
         "e31": 0.0,
         "e32": 0.0,
         "e33": 1.0
-    }
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "7d9537470dee4af884c87bd4e2804f9e",
-    "m_Guid": {
-        "m_GuidSerialized": "aa87d296-c1b3-4202-b021-a9a2320fef28"
-    },
-    "m_Name": "Fresnel",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Fresnel",
-    "m_DefaultReferenceName": "_Fresnel",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 2.2699999809265138,
-    "m_FloatType": 0,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
     }
 }
 
