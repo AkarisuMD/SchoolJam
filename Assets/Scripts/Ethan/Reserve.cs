@@ -11,6 +11,8 @@ public class Reserve : MonoBehaviour
         panel.SetActive(false);
         panelIsOpen = false;
     }
+
+
     public void OnMouseDown()
     {
         if (panelIsOpen == false) 
