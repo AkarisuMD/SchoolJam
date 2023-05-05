@@ -35,12 +35,12 @@ public class MainMenuManager : Singleton<MainMenuManager>
 
     [Space(5), Header("Buttons")]
     [Tooltip("Button to continue the last game save.")]
-    [SerializeField] private Button _ContinueButton;
-    [Tooltip("Button to start a new game.")]
+    //[SerializeField] private Button _ContinueButton;
+    //[Tooltip("Button to start a new game.")]
     [SerializeField] private Button _NewGameButton;
     [Tooltip("Button to load a specific game.")]
-    [SerializeField] private Button _LoadButton;
-    [Tooltip("Button to quit game.")]
+    //[SerializeField] private Button _LoadButton;
+    //[Tooltip("Button to quit game.")]
     [SerializeField] private Button _QuitButton;
     [Tooltip("Buttons to return on main menu")]
     [SerializeField] private Button _MainMenuButton;
@@ -282,9 +282,9 @@ public class MainMenuManager : Singleton<MainMenuManager>
     /// </summary>
     private void SetButtonListener()
     {
-        if (_ContinueButton != null) _ContinueButton.onClick.AddListener(Continue);
+        //if (_ContinueButton != null) _ContinueButton.onClick.AddListener(Continue);
         if (_NewGameButton != null) _NewGameButton.onClick.AddListener(NewGame);
-        if (_LoadButton != null) _LoadButton.onClick.AddListener(Load);
+       // if (_LoadButton != null) _LoadButton.onClick.AddListener(Load);
         if (_QuitButton != null) _QuitButton.onClick.AddListener(Quit);
         if (_MainMenuButton != null) _MainMenuButton.onClick.AddListener(MainMenu);
         if (_OptionsButton != null) _OptionsButton.onClick.AddListener(Options);
@@ -297,9 +297,9 @@ public class MainMenuManager : Singleton<MainMenuManager>
     /// <param name="value"></param>
     private void StateInteractable(bool value)
     {
-        _ContinueButton.interactable = value;
+        //_ContinueButton.interactable = value;
         _NewGameButton.interactable = value;
-        _LoadButton.interactable = value;
+        //_LoadButton.interactable = value;
         _QuitButton.interactable = value;
         _FullscreenButton.interactable = value;
         _ResolutionDropdown.interactable = value;
