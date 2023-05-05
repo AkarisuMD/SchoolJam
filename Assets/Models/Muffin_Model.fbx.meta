@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 21e804e690186fc42bd224fc48e2f7ce
+guid: 3f76608709b341549812843bedc2b3be
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Propsing
-    second: {fileID: 2100000, guid: 58532d60012df714fac3e070a4139fff, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
