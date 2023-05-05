@@ -47,12 +47,11 @@ public class GuestBehaviour : MonoBehaviour
 
     public GameObject player;
 
+    [SerializeField] private ParticleSystem buy;
+
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").gameObject;
-
-        commandesManager = CommandesManager.Instance;
-        resourceManager = ResourceManager.Instance;
 
         int rng = UnityEngine.Random.Range(0, 1);
         if (rng == 0 )
@@ -216,13 +215,21 @@ public class GuestBehaviour : MonoBehaviour
 
 
 
+    bool madeACommande = false;
+
     private void OnMouseUp()
     {
         player.GetComponent<PlayerBehaviour>().ClearActions();
         player.GetComponent<PlayerBehaviour>().isGoingToClients = true;
 
-        if (state == 1)
-            GetNewCommand();
+        if (state == 1 && !madeACommande)
+        {
+            madeACommande = true;
+            buy.Play();
+            CommandesManager.Instance.NewCommand(this);
+            state = 2;
+            return;
+        }
 
         if (state == 2)
         {
@@ -236,31 +243,16 @@ public class GuestBehaviour : MonoBehaviour
             bool don = _commande.Donut >= commande.Donut;
 
             if (!regu || !blond || !deca || !crois || !muf || !don) satisfaction = 0.5f;
+            Debug.Log($"Satisfaction = {satisfaction}");
 
-
+            Destroy(etiquette);
 
             GuestsManager.Instance.MakeNewCommandeToGive();
             state = 3;
+            return;
         }
     }
-
-    public CommandesManager commandesManager;
-    public ResourceManager resourceManager;
-    public float price = 0;
-
-
-    private void GetNewCommand()
-    {
-        commandesManager.NewCommand(this);
-        price = commandesManager.regularCoffeePrice * commandesManager.regularcoffee
-            + commandesManager.decaCoffeePrice * commandesManager.decaCoffee
-            + commandesManager.blondCoffeePrice * commandesManager.blondCoffee
-            + commandesManager.donutPrice * commandesManager.donut
-            + commandesManager.painAuChocolatPrice * commandesManager.painAuChocolat
-            + commandesManager.croissantPrice * commandesManager.croissant;
-        price = price * resourceManager.Reputation;
-        resourceManager.Money += Mathf.CeilToInt(price);
-    }
+    public GameObject etiquette;
 
     private void ClearEmotes()
     {

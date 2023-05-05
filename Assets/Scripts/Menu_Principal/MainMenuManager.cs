@@ -179,6 +179,7 @@ public class MainMenuManager : Singleton<MainMenuManager>
         UpdateResolutionDropdown();
 
         LoadSettings();
+        Debug.Log("TEST");
     }
 
     #endregion
