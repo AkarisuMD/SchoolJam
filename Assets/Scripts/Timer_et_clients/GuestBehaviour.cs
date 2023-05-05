@@ -11,6 +11,13 @@ public class GuestBehaviour : MonoBehaviour
     public GameObject table;
     public GameObject exitDoor;
 
+    public GameObject talkEmote;
+    public GameObject angryEmote;
+    public GameObject unhappyEmote;
+    public GameObject fineEmote;
+    public GameObject happyEmote;
+
+
     public float height;
     public float speed;
     public float waitingLineWalkTime;
@@ -23,12 +30,14 @@ public class GuestBehaviour : MonoBehaviour
     public int nextState;
     public int placeInLine;
     public float guestSpacing;
+    public float x;
 
     [Range (0.5f, 2f)]
     public float satisfaction;
 
     public int mealGeneration;
     public float mealComplexityMultiplier;
+    public bool isThrowingATemperTentrum;
 
     public float guestID;
 
@@ -59,21 +68,47 @@ public class GuestBehaviour : MonoBehaviour
         requestLine = GameObject.FindGameObjectWithTag("RequestingLine").gameObject;
         exitDoor = GameObject.FindGameObjectWithTag("ExitDoor").gameObject;
 
+        talkEmote = this.gameObject.transform.GetChild(0).gameObject;
+        angryEmote = this.gameObject.transform.GetChild(1).gameObject;
+        unhappyEmote = this.gameObject.transform.GetChild(2).gameObject;
+        fineEmote = this.gameObject.transform.GetChild(3).gameObject;
+        happyEmote = this.gameObject.transform.GetChild(4).gameObject;
+
+        anger = 0;
+
         guestID = (float)UnityEngine.Random.Range(0, 99999);
     }
 
     public void Update()
     {
+        x -= Time.deltaTime;
+
+        if (anger == 0) { ClearEmotes(); happyEmote.SetActive(true); }
+        if (anger == 1) { ClearEmotes(); }
+        if (anger == 2) { ClearEmotes(); fineEmote.SetActive(true); }
+        if (anger == 3) { ClearEmotes(); happyEmote.SetActive(true); }
+
         timeSpentWaiting += Time.deltaTime;
         if (state == nextState)
         {
+            x = 0;
             nextState = state + 1;
             timeSpentWaiting = 0;
+            isThrowingATemperTentrum = false;
         }
 
-        if(timeSpentWaiting > waitingTimeTolerance)
+        if (waitingTimeTolerance < timeSpentWaiting && isThrowingATemperTentrum == false)
         {
-            anger += 1f * Time.deltaTime;
+            anger += 1;
+            isThrowingATemperTentrum = true;
+        }
+        if (waitingTimeTolerance > timeSpentWaiting)
+        {
+            angryEmote.SetActive(false);
+        }
+        else
+        {
+            angryEmote.SetActive(true);
         }
 
         if(state == 0)
@@ -129,6 +164,11 @@ public class GuestBehaviour : MonoBehaviour
                     this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z),
                                                                      new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, height, requestLine.gameObject.transform.position.z), speed / 100);
 
+                }
+
+                if(x < -20)
+                {
+                    state = nextState;
                 }
             }
             catch(UnassignedReferenceException) { }
@@ -203,5 +243,13 @@ public class GuestBehaviour : MonoBehaviour
             + commandesManager.croissantPrice * commandesManager.croissant;
         price = price * resourceManager.Reputation;
         resourceManager.Money += Mathf.CeilToInt(price);
+    }
+
+    private void ClearEmotes()
+    {
+        happyEmote.SetActive(false);
+        angryEmote.SetActive(false);
+        fineEmote.SetActive(false);
+        happyEmote.SetActive(false);
     }
 }

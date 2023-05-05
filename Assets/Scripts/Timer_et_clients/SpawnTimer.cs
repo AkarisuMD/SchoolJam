@@ -14,6 +14,7 @@ public class SpawnTimer : MonoBehaviour
     public float timerSpeed;
     public float timerTime;
     public Color timerColor;
+    public Quaternion baseRotation;
 
     public bool isDayNight;
     public bool HasStarted;
@@ -25,6 +26,7 @@ public class SpawnTimer : MonoBehaviour
         aiguille.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         timerSpawned.SetActive(false);
         timerColor = timerSpawned.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().material.color;
+        baseRotation = timerSpawned.transform.rotation;
         HasStarted = false;
     }
 
