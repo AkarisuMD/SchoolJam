@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 127.66, y: -173.934}
-  m_SizeDelta: {x: 250.15, y: 353.148}
+  m_AnchoredPosition: {x: 163.66196, y: -238.08083}
+  m_SizeDelta: {x: 204.122, y: 364.8124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5984523892409733532
 CanvasRenderer:
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -6.87088, w: 0}
+  m_margin: {x: 0.49582672, y: 0, z: -2.5302505, w: -2.2837677}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 7418632781839087414}
   - component: {fileID: 2093269876803330708}
   - component: {fileID: 7484816370910663630}
+  - component: {fileID: 8906790580739613686}
   m_Layer: 5
   m_Name: Etiquette
   m_TagString: Untagged
@@ -174,7 +175,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 252.732, y: 370.435}
+  m_SizeDelta: {x: 333.1, y: 452.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7418632781839087414
 CanvasRenderer:
@@ -204,8 +205,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 9905920a2298cc04cbdfbaad4de897b7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -228,3 +229,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 6286780156949853778}
   middleManEtiquette: {fileID: 11400000, guid: a288ea34da72dc9419f33a096c2ccf4f, type: 2}
+--- !u!95 &8906790580739613686
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3057514393519178039}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dfde3347e359e4a4285e681fadb4311b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

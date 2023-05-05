@@ -18,6 +18,7 @@ public class PanelManager : Singleton<PanelManager>
     public Image resource; // image
     public TextMeshProUGUI cafeName; // nom
     public TextMeshProUGUI cafeCapacity; // capacité de stockage du café
+    public TextMeshProUGUI costText;
     public bool isPanelOpen = false; // État actuel du panneau
 
     public int cost;
@@ -46,10 +47,12 @@ public class PanelManager : Singleton<PanelManager>
     {
         currentTypeUpgrade = cafeReserveUpgrade;
         cafeType = cafeReserveUpgrade.cafeType; 
+        
         resource.sprite = cafeType.spriteResource;
         cafeName.text = cafeType.cafename;
-        cafeCapacity.text = cafeType.cafeMaxCapacity.ToString();
+        cafeCapacity.text = "Capacity:" + cafeType.cafeMaxCapacity.ToString() + "+1";
         levelText.text = "Level:" + cafeType.Level.ToString(); 
+        costText.text = "Upgrade:" + cafeType.costToUpgrade.ToString();
     }
 
     public void LevelUp()
@@ -62,7 +65,8 @@ public class PanelManager : Singleton<PanelManager>
             levelText.text = "Level:" + currentTypeUpgrade.cafeType.Level.ToString();
             currentTypeUpgrade.cafeType.cafeMaxCapacity = currentTypeUpgrade.cafeType.cafeMaxCapacity + 1;
             cafeCapacity.text = currentTypeUpgrade.cafeType.cafeMaxCapacity.ToString();
-
+            currentTypeUpgrade.cafeType.costToUpgrade = cost;
+            Close();
         }
         else
         {
