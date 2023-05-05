@@ -13,6 +13,7 @@ public class Reserve : MonoBehaviour
     public CafeObject croissant;
     public CafeObject donut;
     public CafeObject muffin;
+    public GameObject player;
     private void Start()
     {
         panel.SetActive(false);
@@ -84,6 +85,9 @@ public class Reserve : MonoBehaviour
 
     public void OnMouseDown()
     {
+        player.GetComponent<PlayerBehaviour>().ClearActions();
+        player.GetComponent<PlayerBehaviour>().isGoingToStorage = true;
+
         if (panelIsOpen == false) 
         { 
             panelIsOpen = true;

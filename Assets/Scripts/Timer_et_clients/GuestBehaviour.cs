@@ -6,30 +6,12 @@ using UnityEngine.UIElements;
 
 public class GuestBehaviour : MonoBehaviour
 {
-    /*
-recup temps de march et temps de marche a l entree du coffe shop dépend de la file d'attente
-recup place dans la ou les files d attente et place de table
-get stade pour fil d'attente, en commande, vers la table, a table, sort.
-donner des set timer a chacune de ses action (avec modifier) qui s'applique
-    indiquer temps de march et temps de marche a l entree du coffe shop dépend de la file d'attente
-    get timer et vitesse du client
-recuperer la source des timer pour le client
-timer patience
-timer satisfaction
-timer wait de donner la commande DIFFERENCIER de wait pour avoir la commande une fois donné
-(autre fil d'attente autre part sur le contoir)
-
-ce que veut le client
-faire du malus si le client n'a pas ce qu il veut (paye par ratio que pour les bon éléments, perd les mauvais)
-+ malus timer parce qu'il est deg + moins rep
-faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins de thune.
-*/
     public GameObject waitingLine;
     public GameObject requestLine;
     public GameObject table;
     public GameObject exitDoor;
 
-
+    public float height;
     public float speed;
     public float waitingLineWalkTime;
     public float requestLineWalkTime;
@@ -54,8 +36,11 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
 
     public Commande commande;
 
+    public GameObject player;
+
     public void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").gameObject;
 
         commandesManager = CommandesManager.Instance;
         resourceManager = ResourceManager.Instance;
@@ -74,7 +59,7 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
         requestLine = GameObject.FindGameObjectWithTag("RequestingLine").gameObject;
         exitDoor = GameObject.FindGameObjectWithTag("ExitDoor").gameObject;
 
-        guestID = (float)UnityEngine.Random.Range(0, 99);
+        guestID = (float)UnityEngine.Random.Range(0, 99999);
     }
 
     public void Update()
@@ -93,11 +78,11 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
 
         if(state == 0)
         {
-            this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z), 
-                                                                     new Vector3(waitingLine.gameObject.transform.position.x, 0, waitingLine.gameObject.transform.position.z + placeInLine * guestSpacing), speed / 100);
+            this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z), 
+                                                                     new Vector3(waitingLine.gameObject.transform.position.x - placeInLine * guestSpacing, height, waitingLine.gameObject.transform.position.z - placeInLine * guestSpacing * 0.33f), speed / 100);
 
-            if (new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z) == 
-                new Vector3(waitingLine.gameObject.transform.position.x, 0, waitingLine.gameObject.transform.position.z))
+            if (new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z) == 
+                new Vector3(waitingLine.gameObject.transform.position.x, height, waitingLine.gameObject.transform.position.z))
             {
                 state = nextState;
             }
@@ -105,11 +90,11 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
 
         if (state == 1)
         {
-            this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z), 
-                                                                     new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, 0, requestLine.gameObject.transform.position.z), speed / 100);
+            this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z), 
+                                                                     new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, height, requestLine.gameObject.transform.position.z), speed / 100);
             
-            if (new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z) ==
-                new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, 0, requestLine.gameObject.transform.position.z))
+            if (new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z) ==
+                new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, height, requestLine.gameObject.transform.position.z))
             {
                 this.gameObject.transform.rotation = waitingLine.gameObject.transform.rotation;
 
@@ -136,13 +121,13 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
                 if (table.tag != "WaitingTable")
                 {
                     this.gameObject.transform.rotation = table.gameObject.transform.rotation;
-                    this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z),
-                                                                         new Vector3(table.gameObject.transform.position.x, 0, table.gameObject.transform.position.z), speed / 100);
+                    this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z),
+                                                                         new Vector3(table.gameObject.transform.position.x, height, table.gameObject.transform.position.z), speed / 100);
                 }
                 else
                 {
-                    this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z),
-                                                                     new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, 0, requestLine.gameObject.transform.position.z), speed / 100);
+                    this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z),
+                                                                     new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, height, requestLine.gameObject.transform.position.z), speed / 100);
 
                 }
             }
@@ -152,20 +137,20 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
 
         if (state == 4)
         {
-            if (new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z) == 
-                new Vector3(table.gameObject.transform.position.x, 0, table.gameObject.transform.position.z))
+            if (new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z) == 
+                new Vector3(table.gameObject.transform.position.x, height, table.gameObject.transform.position.z))
             {
                 //SATISFACTION
                 Debug.Log("Satisfaction");
                 this.gameObject.transform.rotation = exitDoor.gameObject.transform.rotation;
             }
             
-            this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z),
-                                                                         new Vector3(exitDoor.gameObject.transform.position.x, 0, exitDoor.gameObject.transform.position.z), speed / 100);
+            this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z),
+                                                                         new Vector3(exitDoor.gameObject.transform.position.x, height, exitDoor.gameObject.transform.position.z), speed / 100);
 
 
-            if (new Vector3(this.gameObject.transform.position.x, 0, this.gameObject.transform.position.z) == 
-                new Vector3(exitDoor.gameObject.transform.position.x, 0, exitDoor.gameObject.transform.position.z))
+            if (new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z) == 
+                new Vector3(exitDoor.gameObject.transform.position.x, height, exitDoor.gameObject.transform.position.z))
             {
                 Destroy(this.gameObject);
             }
@@ -176,6 +161,9 @@ faire un temps average, moins = plus de rep, plus = moins de rep, trompé = moins
 
     private void OnMouseUp()
     {
+        player.GetComponent<PlayerBehaviour>().ClearActions();
+        player.GetComponent<PlayerBehaviour>().isGoingToClients = true;
+
         if (state == 1)
             GetNewCommand();
 

@@ -26,8 +26,13 @@ public class Cafetiere : Singleton<Cafetiere>
     [SerializeField] private Image Choice2Image;
     [SerializeField] private Image Choice3Image;
 
+    public GameObject player;
+
     private void OnMouseUp()
     {
+        player.GetComponent<PlayerBehaviour>().ClearActions();
+        player.GetComponent<PlayerBehaviour>().isGoingToCoffeeMachine = true;
+
         if (inUse)
         {
             if (!isFinish) return;
