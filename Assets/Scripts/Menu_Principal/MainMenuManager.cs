@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -535,11 +536,11 @@ public class MainMenuManager : Singleton<MainMenuManager>
     #region ButtonsActions
     private void Continue()
     {
-        // continue game here
+        // Feur
     }
     private void NewGame()
     {
-        // start a new game with a new save
+        SceneManager.LoadScene(1);
     }
     private void Load()
     {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
@@ -17,6 +18,12 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public Cursor_Controller cursorInputActions;
 
+
+    /// <summary>
+    /// Current heritier of the coffee.
+    /// </summary>
+    public Sc_Heritier heritier;
+
     #endregion
     //==============================================================================================================
 
@@ -31,6 +38,8 @@ public class GameManager : Singleton<GameManager>
     #region PRIVATE
     //==============================================================================================================
 
+    #region cursor
+
     private string path_Cursor_Normal = "Template/Cursor/Normal_Cursor";
     private string path_Cursor_Click = "Template/Cursor/Click_Cursor";
 
@@ -39,6 +48,9 @@ public class GameManager : Singleton<GameManager>
 
     private Texture2D cursor_Normal;
     private Texture2D cursor_Click;
+
+    #endregion
+
 
     #endregion
     //==============================================================================================================
@@ -72,6 +84,7 @@ public class GameManager : Singleton<GameManager>
     #region PUBLIC FONCTION
     //==============================================================================================================
 
+
     #endregion
     //==============================================================================================================
 
@@ -79,6 +92,7 @@ public class GameManager : Singleton<GameManager>
     #region PRIVATE FONCTION
     //==============================================================================================================
 
+    #region cursor
     /// <summary>
     /// Get cursor texture.
     /// </summary>
@@ -99,7 +113,9 @@ public class GameManager : Singleton<GameManager>
     }
     private void OnClickStarted() { if (Cursor.visible) Cursor.SetCursor(cursor_Click, offset_Cursor, cursorMode); }
     private void OnClickCanceled() { if (Cursor.visible) Cursor.SetCursor(cursor_Normal, offset_Cursor, cursorMode); }
+    #endregion
 
+    #region settings
     /// <summary>
     /// Load settings from player pref.
     /// </summary>
@@ -154,6 +170,9 @@ public class GameManager : Singleton<GameManager>
     }
 
     #endregion
+
+
+#endregion
     //==============================================================================================================
 
 

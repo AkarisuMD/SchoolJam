@@ -31,15 +31,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 1
     m_Value: 1
   gaussianStart:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   gaussianEnd:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 24.68
   gaussianMaxRadius:
     m_OverrideState: 1
@@ -80,13 +80,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.45013234}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.22539468}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.34896046}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.55146533}
+    m_Value: {x: 1, y: 1, z: 1, w: 0.7279879}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
     m_Value: {r: 0.8867924, g: 0.8232111, b: 0.86747897, a: 1}
   balance:
     m_OverrideState: 1
-    m_Value: 61.2
+    m_Value: 51
 --- !u!114 &-570685183579235237
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -174,10 +174,10 @@ MonoBehaviour:
     m_Value: {x: 1, y: 1, z: 1, w: 0.045078885}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.12021038}
+    m_Value: {x: 1, y: 1, z: 1, w: 0.20847164}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.36063117}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.20424092}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,19 +552,19 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.69
+    m_Value: 0.21
   contrast:
     m_OverrideState: 1
-    m_Value: -3.5
+    m_Value: -32
   colorFilter:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: -76
   saturation:
     m_OverrideState: 1
-    m_Value: 20.5
+    m_Value: 95
 --- !u!114 &5517595702388691329
 MonoBehaviour:
   m_ObjectHideFlags: 3
