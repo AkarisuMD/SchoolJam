@@ -16,7 +16,7 @@ public class GuestBehaviour : MonoBehaviour
     public GameObject unhappyEmote;
     public GameObject fineEmote;
     public GameObject happyEmote;
-
+    public GameObject exclamationEmote;
 
     public float height;
     public float speed;
@@ -73,6 +73,7 @@ public class GuestBehaviour : MonoBehaviour
         unhappyEmote = this.gameObject.transform.GetChild(2).gameObject;
         fineEmote = this.gameObject.transform.GetChild(3).gameObject;
         happyEmote = this.gameObject.transform.GetChild(4).gameObject;
+        exclamationEmote = this.gameObject.transform.GetChild(5).gameObject;
 
         anger = 0;
 
@@ -121,6 +122,7 @@ public class GuestBehaviour : MonoBehaviour
             {
                 state = nextState;
             }
+            exclamationEmote.gameObject.SetActive(false);
         }
 
         if (state == 1)
@@ -138,13 +140,16 @@ public class GuestBehaviour : MonoBehaviour
             {
                 this.gameObject.transform.rotation = requestLine.gameObject.transform.rotation;
             }
+
+            exclamationEmote.gameObject.SetActive(true);
             //la commande a été accepté
         }
 
 
         if (state == 2)
         {
-
+            exclamationEmote.gameObject.SetActive(false);
+            talkEmote.gameObject.SetActive(false);
             //wait avec la commande
         }
 
@@ -170,13 +175,25 @@ public class GuestBehaviour : MonoBehaviour
                 {
                     state = nextState;
                 }
+
+                if (x < -5)
+                {
+                    talkEmote.gameObject.SetActive(true);
+                }
+                else
+                {
+                    talkEmote.gameObject.SetActive(false);
+                }
             }
             catch(UnassignedReferenceException) { }
+
 
         }
 
         if (state == 4)
         {
+            talkEmote.gameObject.SetActive(false);
+
             if (new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z) == 
                 new Vector3(table.gameObject.transform.position.x, height, table.gameObject.transform.position.z))
             {
