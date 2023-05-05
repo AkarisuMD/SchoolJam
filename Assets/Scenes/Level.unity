@@ -13658,10 +13658,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1528084445228369266, guid: 67a4b7deb60448742be0c6f767ee48a7,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 448e04a1db794d540bbd83f33e2e5586,
+        type: 2}
     - target: {fileID: 5271329216921967467, guid: 67a4b7deb60448742be0c6f767ee48a7,
         type: 3}
       propertyPath: m_Name
       value: Light_LightmanagerAndPostProcess
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329331729836863159, guid: 67a4b7deb60448742be0c6f767ee48a7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5195311
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329331729836863159, guid: 67a4b7deb60448742be0c6f767ee48a7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.37850153
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329331729836863159, guid: 67a4b7deb60448742be0c6f767ee48a7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.619153
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329331729836863159, guid: 67a4b7deb60448742be0c6f767ee48a7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.45108053
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062259537508889902, guid: 67a4b7deb60448742be0c6f767ee48a7,
+        type: 3}
+      propertyPath: m_ColorTemperature
+      value: 2586
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546482652474290396, guid: 67a4b7deb60448742be0c6f767ee48a7,
+        type: 3}
+      propertyPath: TimeOfDay
+      value: 10.81
       objectReference: {fileID: 0}
     - target: {fileID: 8760078246973881885, guid: 67a4b7deb60448742be0c6f767ee48a7,
         type: 3}
