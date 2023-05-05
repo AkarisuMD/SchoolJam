@@ -106,8 +106,10 @@ public class Reserve : MonoBehaviour
         }
     }
 
-    public void OnMouseDown()
+    public void OnMouseUp()
     {
+        if (MenuPause.Instance.isPaused) return;
+
         player.GetComponent<PlayerBehaviour>().ClearActions();
         player.GetComponent<PlayerBehaviour>().isGoingToStorage = true;
 

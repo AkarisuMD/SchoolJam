@@ -7,7 +7,7 @@ public class MenuPause : Singleton<MenuPause>
     public GameObject pauseMenuUI;
     public GameObject imaage;
 
-    private bool isPaused = false;
+    public bool isPaused = false;
 
     private void Update()
     {

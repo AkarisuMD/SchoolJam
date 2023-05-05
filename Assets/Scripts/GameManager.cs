@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
@@ -50,8 +51,6 @@ public class GameManager : Singleton<GameManager>
 
     #endregion
 
-    // panel of the choice of heritier.
-    private GameObject goChoixHeritier;
 
     #endregion
     //==============================================================================================================
@@ -73,11 +72,6 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
-    {
-        OnNewDay();
-    }
-
     private void OnApplicationQuit()
     {
         SaveSettings();
@@ -90,17 +84,6 @@ public class GameManager : Singleton<GameManager>
     #region PUBLIC FONCTION
     //==============================================================================================================
 
-    /// <summary>
-    /// Heritier choice of the player.
-    /// </summary>
-    /// <param name="sc_Heritier"></param>
-    public void SelectHeritier(Sc_Heritier sc_Heritier)
-    {
-        heritier = sc_Heritier;
-        Destroy(goChoixHeritier);
-
-        // start game
-    }
 
     #endregion
     //==============================================================================================================
@@ -188,16 +171,6 @@ public class GameManager : Singleton<GameManager>
 
     #endregion
 
-    /// <summary>
-    /// Quand une nouvelle journée démare (ou au commencement de la partie)
-    /// </summary>
-    private void OnNewDay()
-    {
-        // animation de journée
-
-        // spawn le choix des heritiers.
-        goChoixHeritier = Instantiate(Resources.Load<GameObject>("Menu/ChoixHeritier"));
-    }
 
 #endregion
     //==============================================================================================================

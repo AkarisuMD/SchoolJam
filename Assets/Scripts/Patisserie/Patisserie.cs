@@ -32,6 +32,8 @@ public class Patisserie : Singleton<Patisserie>
 
     private void OnMouseUp()
     {
+        if (MenuPause.Instance.isPaused) return;
+
         player.GetComponent<PlayerBehaviour>().ClearActions();
         player.GetComponent<PlayerBehaviour>().isGoingToPastries = true;
 
@@ -129,6 +131,19 @@ public class Patisserie : Singleton<Patisserie>
         inUse = false;
         isFinish = false;
 
-        // give commande with coffee type
+        switch (patisserieType)
+        {
+            case PatisserieType.CROISSANT:
+                GuestsManager.Instance.commandeToGive.Croissant += 1;
+                break;
+            case PatisserieType.MUFFIN:
+                GuestsManager.Instance.commandeToGive.Muffin += 1;
+                break;
+            case PatisserieType.DONUT:
+                GuestsManager.Instance.commandeToGive.Donut += 1;
+                break;
+            default:
+                break;
+        }
     }
 }

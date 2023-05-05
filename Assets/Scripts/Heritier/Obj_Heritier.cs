@@ -31,6 +31,7 @@ public class Obj_Heritier : MonoBehaviour
     private void Start() { button.onClick.AddListener(OnClickAction); }
     private void OnClickAction()
     {
-        GameManager.Instance.SelectHeritier(heritier);
+        Time.timeScale = 1;
+        GuestsManager.Instance.SelectHeritier(heritier);
     }
 }

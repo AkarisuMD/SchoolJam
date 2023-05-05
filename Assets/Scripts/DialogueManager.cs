@@ -18,12 +18,14 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void CallTuto()
     {
+        MenuPause.Instance.isPaused = true;
         DialogueObj.SetActive(true);
         image_Personnage.sprite = TUTO_Sprite;
         text.text = dialogue_Tuto;
     }
     public void CallDialogue(GuestBehaviour gb, Commande cmd)
     {
+        MenuPause.Instance.isPaused = true;
         DialogueObj.SetActive(true);
         switch (gb.clientType)
         {
@@ -36,12 +38,16 @@ public class DialogueManager : Singleton<DialogueManager>
             default:
                 break;
         }
+        text.text = dialogue_Random[Random.Range(0, dialogue_Random.Count)];
 
-        text.text = dialogue_Tuto[Random.Range(0, dialogue_Tuto.Length)].ToString();
-
+    }
+    public void SetPauseFalse()
+    {
+        MenuPause.Instance.isPaused = false;
     }
     public void SetGuestToState2()
     {
+        MenuPause.Instance.isPaused = false;
         currentGuest.state = 2;
     }
 }

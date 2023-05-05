@@ -30,6 +30,8 @@ public class Cafetiere : Singleton<Cafetiere>
 
     private void OnMouseUp()
     {
+        if (MenuPause.Instance.isPaused) return;
+
         player.GetComponent<PlayerBehaviour>().ClearActions();
         player.GetComponent<PlayerBehaviour>().isGoingToCoffeeMachine = true;
 
@@ -94,9 +96,10 @@ public class Cafetiere : Singleton<Cafetiere>
 
     private IEnumerator PreparationWaiting(int a)
     {
+        particleSystem.Play();
+        SpawnCoffee(a);
         // Instantiate(waitingObj, canvas.transform);
         yield return new WaitForSeconds(preparationTime);
-        SpawnCoffee(a);
         isFinish = true;
     }
 
@@ -128,6 +131,19 @@ public class Cafetiere : Singleton<Cafetiere>
         inUse = false;
         isFinish = false;
 
-        // give commande with coffee type
+        switch (coffeeType)
+        {
+            case CoffeeType.REGULAR:
+                GuestsManager.Instance.commandeToGive.RegularCoffee += 1;
+                break;
+            case CoffeeType.BLOND:
+                GuestsManager.Instance.commandeToGive.BlondCoffee += 1;
+                break;
+            case CoffeeType.DECA:
+                GuestsManager.Instance.commandeToGive.DecaCoffee += 1;
+                break;
+            default:
+                break;
+        }
     }
 }

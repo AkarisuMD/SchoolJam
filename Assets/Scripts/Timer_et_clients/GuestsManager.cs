@@ -197,4 +197,36 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
         }
         catch (NullReferenceException) { }
     }
+
+    private void Awake()
+    {
+        OnNewDay();
+    }
+
+    // panel of the choice of heritier.
+    [SerializeField] private GameObject goChoixHeritier;
+    /// <summary>
+    /// Heritier choice of the player.
+    /// </summary>
+    /// <param name="sc_Heritier"></param>
+    public void SelectHeritier(Sc_Heritier sc_Heritier)
+    {
+        GameManager.Instance.heritier = sc_Heritier;
+        Destroy(goChoixHeritier);
+
+        // start game
+    }
+
+    /// <summary>
+    /// Quand une nouvelle journée démare (ou au commencement de la partie)
+    /// </summary>
+    public void OnNewDay() => StartCoroutine(_OnNewDay());
+    IEnumerator _OnNewDay()
+    {
+        Time.timeScale = 0.001f;
+        yield return new WaitForSeconds(0.0001f);
+        // animation de journée
+        goChoixHeritier = Instantiate(Resources.Load<GameObject>("Menu/ChoixHeritier"));
+    }
+
 }
