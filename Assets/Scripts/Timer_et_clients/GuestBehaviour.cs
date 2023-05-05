@@ -1,4 +1,3 @@
-using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +11,13 @@ public class GuestBehaviour : MonoBehaviour
     public GameObject table;
     public GameObject exitDoor;
 
+    public GameObject talkEmote;
+    public GameObject angryEmote;
+    public GameObject unhappyEmote;
+    public GameObject fineEmote;
+    public GameObject happyEmote;
+
+
     public float height;
     public float speed;
     public float waitingLineWalkTime;
@@ -24,12 +30,14 @@ public class GuestBehaviour : MonoBehaviour
     public int nextState;
     public int placeInLine;
     public float guestSpacing;
+    public float x;
 
     [Range (0.5f, 2f)]
     public float satisfaction;
 
     public int mealGeneration;
     public float mealComplexityMultiplier;
+    public bool isThrowingATemperTentrum;
 
     public float guestID;
 
@@ -39,14 +47,12 @@ public class GuestBehaviour : MonoBehaviour
 
     public GameObject player;
 
-    [SerializeField] private Animator _animator;
-
-    [SerializeField] private ParticleSystem buy;
-
-
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").gameObject;
+
+        commandesManager = CommandesManager.Instance;
+        resourceManager = ResourceManager.Instance;
 
         int rng = UnityEngine.Random.Range(0, 1);
         if (rng == 0 )
@@ -62,28 +68,53 @@ public class GuestBehaviour : MonoBehaviour
         requestLine = GameObject.FindGameObjectWithTag("RequestingLine").gameObject;
         exitDoor = GameObject.FindGameObjectWithTag("ExitDoor").gameObject;
 
+        talkEmote = this.gameObject.transform.GetChild(0).gameObject;
+        angryEmote = this.gameObject.transform.GetChild(1).gameObject;
+        unhappyEmote = this.gameObject.transform.GetChild(2).gameObject;
+        fineEmote = this.gameObject.transform.GetChild(3).gameObject;
+        happyEmote = this.gameObject.transform.GetChild(4).gameObject;
+
+        anger = 0;
+
         guestID = (float)UnityEngine.Random.Range(0, 99999);
     }
 
     public void Update()
     {
+        x -= Time.deltaTime;
+
+        if (anger == 0) { ClearEmotes(); happyEmote.SetActive(true); }
+        if (anger == 1) { ClearEmotes(); }
+        if (anger == 2) { ClearEmotes(); fineEmote.SetActive(true); }
+        if (anger == 3) { ClearEmotes(); happyEmote.SetActive(true); }
+
         timeSpentWaiting += Time.deltaTime;
         if (state == nextState)
         {
+            x = 0;
             nextState = state + 1;
             timeSpentWaiting = 0;
+            isThrowingATemperTentrum = false;
         }
 
-        if(timeSpentWaiting > waitingTimeTolerance)
+        if (waitingTimeTolerance < timeSpentWaiting && isThrowingATemperTentrum == false)
         {
-            anger += 1f * Time.deltaTime;
+            anger += 1;
+            isThrowingATemperTentrum = true;
+        }
+        if (waitingTimeTolerance > timeSpentWaiting)
+        {
+            angryEmote.SetActive(false);
+        }
+        else
+        {
+            angryEmote.SetActive(true);
         }
 
         if(state == 0)
         {
             this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z), 
                                                                      new Vector3(waitingLine.gameObject.transform.position.x - placeInLine * guestSpacing, height, waitingLine.gameObject.transform.position.z - placeInLine * guestSpacing * 0.33f), speed / 100);
-            
 
             if (new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z) == 
                 new Vector3(waitingLine.gameObject.transform.position.x, height, waitingLine.gameObject.transform.position.z))
@@ -101,7 +132,7 @@ public class GuestBehaviour : MonoBehaviour
                 new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, height, requestLine.gameObject.transform.position.z))
             {
                 this.gameObject.transform.rotation = waitingLine.gameObject.transform.rotation;
-                
+
             }
             else
             {
@@ -113,7 +144,7 @@ public class GuestBehaviour : MonoBehaviour
 
         if (state == 2)
         {
-            
+
             //wait avec la commande
         }
 
@@ -127,13 +158,17 @@ public class GuestBehaviour : MonoBehaviour
                     this.gameObject.transform.rotation = table.gameObject.transform.rotation;
                     this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z),
                                                                          new Vector3(table.gameObject.transform.position.x, height, table.gameObject.transform.position.z), speed / 100);
-                    
                 }
                 else
                 {
                     this.gameObject.transform.position = Vector3.MoveTowards(new Vector3(this.gameObject.transform.position.x, height, this.gameObject.transform.position.z),
                                                                      new Vector3(requestLine.gameObject.transform.position.x - placeInLine * guestSpacing, height, requestLine.gameObject.transform.position.z), speed / 100);
-                    
+
+                }
+
+                if(x < -20)
+                {
+                    state = nextState;
                 }
             }
             catch(UnassignedReferenceException) { }
@@ -162,22 +197,15 @@ public class GuestBehaviour : MonoBehaviour
         }
     }
 
-    bool madeACommande = false;
+
 
     private void OnMouseUp()
     {
         player.GetComponent<PlayerBehaviour>().ClearActions();
         player.GetComponent<PlayerBehaviour>().isGoingToClients = true;
 
-        if (state == 1 && !madeACommande)
-        {
-            madeACommande = true;
-            buy.Play();
-            _animator.SetTrigger("MakeOrder");
-            CommandesManager.Instance.NewCommand(this);
-            state = 2;
-            return;
-        }
+        if (state == 1)
+            GetNewCommand();
 
         if (state == 2)
         {
@@ -191,14 +219,37 @@ public class GuestBehaviour : MonoBehaviour
             bool don = _commande.Donut >= commande.Donut;
 
             if (!regu || !blond || !deca || !crois || !muf || !don) satisfaction = 0.5f;
-            Debug.Log($"Satisfaction = {satisfaction}");
 
-            Destroy(etiquette);
+
 
             GuestsManager.Instance.MakeNewCommandeToGive();
-            state = 3; 
-            return;
+            state = 3;
         }
     }
-    public GameObject etiquette;
+
+    public CommandesManager commandesManager;
+    public ResourceManager resourceManager;
+    public float price = 0;
+
+
+    private void GetNewCommand()
+    {
+        commandesManager.NewCommand(this);
+        price = commandesManager.regularCoffeePrice * commandesManager.regularcoffee
+            + commandesManager.decaCoffeePrice * commandesManager.decaCoffee
+            + commandesManager.blondCoffeePrice * commandesManager.blondCoffee
+            + commandesManager.donutPrice * commandesManager.donut
+            + commandesManager.painAuChocolatPrice * commandesManager.painAuChocolat
+            + commandesManager.croissantPrice * commandesManager.croissant;
+        price = price * resourceManager.Reputation;
+        resourceManager.Money += Mathf.CeilToInt(price);
+    }
+
+    private void ClearEmotes()
+    {
+        happyEmote.SetActive(false);
+        angryEmote.SetActive(false);
+        fineEmote.SetActive(false);
+        happyEmote.SetActive(false);
+    }
 }
