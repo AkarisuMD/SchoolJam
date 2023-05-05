@@ -55,7 +55,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
     public void Update()
     {
-        moneyText.text = Money.ToString() + "$";
+        moneyText.text = Money.ToString();
         reputationText.text = "x" + Reputation.ToString();
         regularCoffeeText.text = RegularCoffee.ToString();
         blondCoffeeText.text = BlondCoffee.ToString();
