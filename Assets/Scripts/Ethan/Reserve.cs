@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Reserve : MonoBehaviour
@@ -14,8 +15,13 @@ public class Reserve : MonoBehaviour
     public CafeObject donut;
     public CafeObject muffin;
     public GameObject player;
+
+    public ResourceManager resourceManager;
+    
+
     private void Start()
     {
+        resourceManager = ResourceManager.Instance;
         panel.SetActive(false);
         panelIsOpen = false;
     }
@@ -53,28 +59,45 @@ public class Reserve : MonoBehaviour
         switch(Name)
         {
             case "RegularCoffee":
-                if (type.actualResource < type.cafeMaxCapacity)
-                { type.actualResource += 1; }
+                if (type.actualResource < type.cafeMaxCapacity && resourceManager.Money>type.costToRefill)
+                { type.actualResource += 1; 
+                    resourceManager.Money = resourceManager.Money-type.costToRefill;
+                }
                 break;
             case "BlondCoffee":
-                if (type.actualResource < type.cafeMaxCapacity)
-                { type.actualResource += 1; }
+                if (type.actualResource < type.cafeMaxCapacity && resourceManager.Money > type.costToRefill)
+                {
+                    type.actualResource += 1;
+                    resourceManager.Money = resourceManager.Money - type.costToRefill;
+                }
                 break;
             case "DecaCoffee":
-                if (type.actualResource < type.cafeMaxCapacity)
-                { type.actualResource += 1; }
+                if (type.actualResource < type.cafeMaxCapacity && resourceManager.Money > type.costToRefill)
+                {
+                    type.actualResource += 1;
+                    resourceManager.Money = resourceManager.Money - type.costToRefill;
+                }
                 break;
             case "Croissant":
-                if (type.actualResource < type.cafeMaxCapacity)
-                { type.actualResource += 1; }
+                if (type.actualResource < type.cafeMaxCapacity && resourceManager.Money > type.costToRefill)
+                {
+                    type.actualResource += 1;
+                    resourceManager.Money = resourceManager.Money - type.costToRefill;
+                }
                 break;
             case "Donut":
-                if (type.actualResource < type.cafeMaxCapacity)
-                { type.actualResource += 1; }
+                if (type.actualResource < type.cafeMaxCapacity && resourceManager.Money > type.costToRefill)
+                {
+                    type.actualResource += 1;
+                    resourceManager.Money = resourceManager.Money - type.costToRefill;
+                }
                 break;
             case "Muffin":
-                if (type.actualResource < type.cafeMaxCapacity)
-                { type.actualResource += 1; }
+                if (type.actualResource < type.cafeMaxCapacity && resourceManager.Money > type.costToRefill)
+                {
+                    type.actualResource += 1;
+                    resourceManager.Money = resourceManager.Money - type.costToRefill;
+                }
                 break;
 
             default:

@@ -29,6 +29,7 @@ public class CafeObject : ScriptableObject
     public float actualResource
        ;
     public float cafeMaxCapacity;
-
+    public int costToUpgrade;
+    public int costToRefill;
 }
  

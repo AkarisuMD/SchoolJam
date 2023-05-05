@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level: 1
   cafename: Pain Au Chocolat
-  spriteResource: {fileID: 0}
+  spriteResource: {fileID: 21300000, guid: a60a4c26cbd44c34a8849d8180e2dc3e, type: 3}
   sprite: {fileID: 0}
   actualResource: 0
   cafeMaxCapacity: 6
+  costToUpgrade: 100
+  costToRefill: 10
