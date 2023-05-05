@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuPause : Singleton<MenuPause>
 {
@@ -42,6 +43,6 @@ public class MenuPause : Singleton<MenuPause>
 
     public void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 }

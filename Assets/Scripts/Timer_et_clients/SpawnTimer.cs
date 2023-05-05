@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,9 +18,16 @@ public class SpawnTimer : MonoBehaviour
 
     public bool isDayNight;
     public bool HasStarted;
+
+    public GameObject WIN;
+    public GameObject LOOSE;
+
     // Start is called before the first frame update
     public void Start()
     {
+        finishOnce = false;
+        WIN.SetActive(false); LOOSE.SetActive(false);
+
         timerSpawned = Instantiate(timerPrefab, new Vector3(this.transform.parent.transform.position.x - 1.5f, 5, this.transform.parent.transform.position.z - 2.25f), Quaternion.Euler(45, 45, 0), this.gameObject.transform.parent.transform);
         aiguille = timerSpawned.transform.GetChild(0).gameObject;
         aiguille.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
@@ -28,6 +36,7 @@ public class SpawnTimer : MonoBehaviour
         HasStarted = false;
     }
 
+    bool finishOnce = false;
     // Update is called once per frame
     public void Update()
     {
@@ -39,9 +48,19 @@ public class SpawnTimer : MonoBehaviour
         }
         else
         {
-            if(isDayNight && HasStarted)
+            if(isDayNight && HasStarted && !finishOnce)
             {
-                SceneManager.LoadScene(0);
+                finishOnce = true;
+                if (ResourceManager.Instance.Reputation > 1)
+                {
+                    WIN.SetActive(true);
+                    WIN.GetComponent<TMP_Text>().text = $"You WON with {ResourceManager.Instance.Reputation}/2 reputation.";
+                }
+                else
+                {
+                    LOOSE.SetActive(true);
+                    LOOSE.GetComponent<TMP_Text>().text = $"You LOOSE with {ResourceManager.Instance.Reputation}/2 reputation.";
+                }
             }
         }
     }

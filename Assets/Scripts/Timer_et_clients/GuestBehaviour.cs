@@ -172,7 +172,7 @@ public class GuestBehaviour : MonoBehaviour
         if (state == 1 && !madeACommande)
         {
             madeACommande = true;
-            // buy.Play();
+            buy.Play();
             _animator.SetTrigger("MakeOrder");
             CommandesManager.Instance.NewCommand(this);
             state = 2;
