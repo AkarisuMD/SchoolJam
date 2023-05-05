@@ -13,8 +13,8 @@ public class ResourceManager : Singleton<ResourceManager>
     public int DecaCoffee;
     public int Reputation;
     public int croissant;
+    public int muffin;
     public int donut;
-    public int painAuChocolat;
 
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI reputationText;
@@ -22,8 +22,8 @@ public class ResourceManager : Singleton<ResourceManager>
     public TextMeshProUGUI blondCoffeeText;
     public TextMeshProUGUI decaCoffeeText;
     public TextMeshProUGUI croissantText;
+    public TextMeshProUGUI muffinText;
     public TextMeshProUGUI donutText;
-    public TextMeshProUGUI painAuChocolatText;
 
     public void GetMoney()
     {
@@ -38,7 +38,7 @@ public class ResourceManager : Singleton<ResourceManager>
         blondCoffeeText.text = BlondCoffee.ToString();
         decaCoffeeText.text = DecaCoffee.ToString();
         croissantText.text = croissant.ToString();
+        muffinText.text = muffin.ToString();
         donutText.text = donut.ToString();
-        painAuChocolatText.text = painAuChocolat.ToString();
     }
 }

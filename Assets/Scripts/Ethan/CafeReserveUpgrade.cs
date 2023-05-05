@@ -24,7 +24,8 @@ public class CafeReserveUpgrade : MonoBehaviour
     {
         
         if (panelManager.isPanelOpen == false)
-        { 
+        {
+            print("open reserve");
             panel.SetActive(true);
             panelManager.isPanelOpen = true;
 

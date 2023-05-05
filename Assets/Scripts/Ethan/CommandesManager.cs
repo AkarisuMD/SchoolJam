@@ -37,6 +37,16 @@ public class CommandesManager : Singleton<CommandesManager>
         croissant = Random.Range(0, 3);
         painAuChocolat = Random.Range(0, 3);
 
+        Commande cmd = new Commande()
+        {
+            RegularCoffee = regularcoffee,
+            BlondCoffee = blondCoffee,
+            DecaCoffee = decaCoffee,
+            Croissant = croissant,
+            Muffin = painAuChocolat,
+            Donut = donut,
+        };
+
         if (regularcoffee == 0 && blondCoffee == 0 && decaCoffee == 0 && donut == 0 && croissant == 0 && painAuChocolat == 0) 
         {
             regularcoffee = 1;
@@ -70,9 +80,9 @@ public class CommandesManager : Singleton<CommandesManager>
         }
 
         middleManEtiquette.tempText = commandeString;
-        
+
+
+        DialogueManager.Instance.CallDialogue(ClientType.FILLE, cmd);
+
     }
-
-
-
 }
