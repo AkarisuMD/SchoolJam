@@ -165,7 +165,11 @@ public class GuestBehaviour : MonoBehaviour
         player.GetComponent<PlayerBehaviour>().isGoingToClients = true;
 
         if (state == 1)
+        {
             GetNewCommand();
+            state = 2;
+            return;
+        }
 
         if (state == 2)
         {
@@ -183,7 +187,8 @@ public class GuestBehaviour : MonoBehaviour
 
 
             GuestsManager.Instance.MakeNewCommandeToGive();
-            state = 3;
+            state = 3; 
+            return;
         }
     }
 
