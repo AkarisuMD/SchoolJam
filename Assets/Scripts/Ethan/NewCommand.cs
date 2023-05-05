@@ -15,7 +15,7 @@ public class NewCommand : MonoBehaviour
         resourceManager = ResourceManager.Instance; 
     }
 
-
+/*
     public void GetNewCommand()
     {
         commandesManager.NewCommand();
@@ -30,5 +30,5 @@ public class NewCommand : MonoBehaviour
 
           
 
-    }
+    }*/
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Reserve : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject panel_Ressources;
     private bool panelIsOpen;
     public CafeObject cafeRegular;
     public CafeObject cafeBlond;
@@ -12,6 +13,7 @@ public class Reserve : MonoBehaviour
     public CafeObject croissant;
     public CafeObject donut;
     public CafeObject muffin;
+    public GameObject player;
     private void Start()
     {
         panel.SetActive(false);
@@ -83,10 +85,14 @@ public class Reserve : MonoBehaviour
 
     public void OnMouseDown()
     {
+        player.GetComponent<PlayerBehaviour>().ClearActions();
+        player.GetComponent<PlayerBehaviour>().isGoingToStorage = true;
+
         if (panelIsOpen == false) 
         { 
             panelIsOpen = true;
             panel.SetActive(true);
+            panel_Ressources.SetActive(false);
         }
     }
 
@@ -94,5 +100,6 @@ public class Reserve : MonoBehaviour
     {
         panel.SetActive(false);
         panelIsOpen = false;
+        panel_Ressources.SetActive(true);
     }
 }

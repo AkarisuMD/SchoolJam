@@ -26,16 +26,51 @@ public class CommandesManager : Singleton<CommandesManager>
     
 
     public GameObject etiquette;
-    public void NewCommand()
+    public void NewCommand(GuestBehaviour gb)
     {
+        int _multi = Random.Range(1, 3);
 
-        regularcoffee = Random.Range(0, 3);
-        blondCoffee = Random.Range(0, 3);
-        decaCoffee = Random.Range(0, 3);
+        switch (_multi)
+        {
+            case 1:
+                int _a = Random.Range(1, 3);
+                if (_a == 1) regularcoffee = 1;
+                else if (_a == 2) blondCoffee = 1;
+                else if (_a == 3) decaCoffee = 1;
+                else Debug.LogError("Something goes wrong.");
 
-        donut = Random.Range(0, 3);
-        croissant = Random.Range(0, 3);
-        painAuChocolat = Random.Range(0, 3);
+                break;
+            case 2:
+                int _b = Random.Range(1, 3);
+                if (_b == 1) regularcoffee = 1;
+                else if (_b == 2) blondCoffee = 1;
+                else if (_b == 3) decaCoffee = 1;
+                else Debug.LogError("Something goes wrong.");
+
+                int _c = Random.Range(1, 3);
+                if (_c == 1) croissant = 1;
+                else if (_c == 2) painAuChocolat = 1;
+                else if (_c == 3) donut = 1;
+                else Debug.LogError("Something goes wrong.");
+
+                break;
+            case 3:
+                int _d = Random.Range(1, 3);
+                if (_d == 1) regularcoffee = 1;
+                else if (_d == 2) blondCoffee = 1;
+                else if (_d == 3) decaCoffee = 1;
+                else Debug.LogError("Something goes wrong.");
+
+                int _e = Random.Range(1, 3);
+                if (_e == 1) croissant = 2;
+                else if (_e == 2) painAuChocolat = 2;
+                else if (_e == 3) donut = 2;
+                else Debug.LogError("Something goes wrong.");
+
+                break;
+            default:
+                break;
+        }
 
         Commande cmd = new Commande()
         {
@@ -46,6 +81,8 @@ public class CommandesManager : Singleton<CommandesManager>
             Muffin = painAuChocolat,
             Donut = donut,
         };
+
+        gb.commande = cmd;
 
         if (regularcoffee == 0 && blondCoffee == 0 && decaCoffee == 0 && donut == 0 && croissant == 0 && painAuChocolat == 0) 
         {
@@ -82,7 +119,7 @@ public class CommandesManager : Singleton<CommandesManager>
         middleManEtiquette.tempText = commandeString;
 
 
-        DialogueManager.Instance.CallDialogue(ClientType.FILLE, cmd);
+        DialogueManager.Instance.CallDialogue(gb, cmd);
 
     }
 }

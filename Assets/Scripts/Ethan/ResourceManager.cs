@@ -11,10 +11,13 @@ public class ResourceManager : Singleton<ResourceManager>
     public int RegularCoffee;
     public int BlondCoffee;
     public int DecaCoffee;
-    public int Reputation;
     public int croissant;
     public int muffin;
     public int donut;
+
+    [Range(0.5f, 2f)]
+    public float Reputation;
+    private List<float> reputationList = new();
 
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI reputationText;
@@ -24,6 +27,26 @@ public class ResourceManager : Singleton<ResourceManager>
     public TextMeshProUGUI croissantText;
     public TextMeshProUGUI muffinText;
     public TextMeshProUGUI donutText;
+
+    public TextMeshProUGUI regularCoffeeText2;
+    public TextMeshProUGUI blondCoffeeText2;
+    public TextMeshProUGUI decaCoffeeText2;
+    public TextMeshProUGUI croissantText2;
+    public TextMeshProUGUI muffinText2;
+    public TextMeshProUGUI donutText2;
+
+    public void AddReputation(float value)
+    {
+        reputationList.Add(value);
+
+        float _global = 0;
+        for (int i = 0; i < reputationList.Count; i++)
+        {
+            _global += reputationList[i];
+        }
+
+        Reputation = _global / reputationList.Count;
+    }
 
     public void GetMoney()
     {
@@ -40,5 +63,13 @@ public class ResourceManager : Singleton<ResourceManager>
         croissantText.text = croissant.ToString();
         muffinText.text = muffin.ToString();
         donutText.text = donut.ToString();
+
+
+        regularCoffeeText2.text = RegularCoffee.ToString();
+        blondCoffeeText2.text = BlondCoffee.ToString();
+        decaCoffeeText2.text = DecaCoffee.ToString();
+        croissantText2.text = croissant.ToString();
+        muffinText2.text = muffin.ToString();
+        donutText2.text = donut.ToString();
     }
 }

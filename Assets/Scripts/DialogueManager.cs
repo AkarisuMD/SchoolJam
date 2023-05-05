@@ -14,6 +14,7 @@ public class DialogueManager : Singleton<DialogueManager>
     [SerializeField] private Sprite TUTO_Sprite;
     [SerializeField] private string dialogue_Tuto = "Hi! Are you the new one? Great, I was waiting for you. The store needed a bit of a revamp. \r\nYou'll see, it's a great place and the customers are really nice, even if they tend to talk a lot.\r\nAnyway, the coffee machine is ready to use, and if you need anything, look in your stock or buy equipment if necessary.";
     [SerializeField] private List<string> dialogue_Random;
+    [SerializeField] private GuestBehaviour currentGuest;
 
     public void CallTuto()
     {
@@ -21,10 +22,10 @@ public class DialogueManager : Singleton<DialogueManager>
         image_Personnage.sprite = TUTO_Sprite;
         text.text = dialogue_Tuto;
     }
-    public void CallDialogue(ClientType clientType, Commande cmd)
+    public void CallDialogue(GuestBehaviour gb, Commande cmd)
     {
         DialogueObj.SetActive(true);
-        switch (clientType)
+        switch (gb.clientType)
         {
             case ClientType.FILLE:
                 image_Personnage.sprite = fille_Sprite;
@@ -38,5 +39,9 @@ public class DialogueManager : Singleton<DialogueManager>
 
         text.text = dialogue_Tuto[Random.Range(0, dialogue_Tuto.Length)].ToString();
 
+    }
+    public void SetGuestToState2()
+    {
+        currentGuest.state = 2;
     }
 }

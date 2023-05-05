@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuestsManager : MonoBehaviour
+public class GuestsManager : Singleton<GuestsManager>
 {
     /*
  * array avec les clients [] (comme monstres VS)
@@ -38,10 +38,25 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
     public float reputationModifier;
     public int x;
 
+    public Commande commandeToGive;
+
     public void Start()
     {
         originTableKey = new int[8] { 4, 2, 7, 6, 1, 0, 5, 3 };
         currentTableKey = new float[8] { 4, 2, 7, 6, 1, 0, 5, 3 };
+    }
+
+    public void MakeNewCommandeToGive()
+    {
+        commandeToGive = new()
+        {
+            RegularCoffee = 0,
+            BlondCoffee = 0,
+            DecaCoffee = 0,
+            Croissant = 0,
+            Muffin = 0,
+            Donut = 0,
+        };
     }
 
     public void Update()
@@ -134,7 +149,7 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
                         requestLine.Remove(guestWithMeal);
                         waitingOnTables.Remove(guestWithMeal);
                         guestWithMeal.GetComponent<GuestBehaviour>().table = allTables[wantedTable];
-                        currentTableKey[wantedTable] = ((float)originTableKey[wantedTable] + 1) * 100 + guestWithMeal.GetComponent<GuestBehaviour>().guestID;
+                        currentTableKey[wantedTable] = ((float)originTableKey[wantedTable] + 1) * 100000 + guestWithMeal.GetComponent<GuestBehaviour>().guestID;
                     }
 
                     x = 0;
@@ -167,11 +182,11 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
                     wantedTable = (int)UnityEngine.Random.Range(0, 7);
                     x = 0;
 
-                    while ( (originTableKey[wantedTable] + 1) * 100 + guestleaving.GetComponent<GuestBehaviour>().guestID != currentTableKey[wantedTable] && x <= 8)
+                    while ( (originTableKey[wantedTable] + 1) * 100000 + guestleaving.GetComponent<GuestBehaviour>().guestID != currentTableKey[wantedTable] && x <= 8)
                     {
                         wantedTable = originTableKey[wantedTable];
                         x++;
-                        Debug.Log((originTableKey[wantedTable] + 1) * 100 + guestleaving.GetComponent<GuestBehaviour>().guestID);
+                        Debug.Log((originTableKey[wantedTable] + 1) * 100000 + guestleaving.GetComponent<GuestBehaviour>().guestID);
                         Debug.Log(currentTableKey[wantedTable]);
                     }
                     onTable.Remove(guestleaving);

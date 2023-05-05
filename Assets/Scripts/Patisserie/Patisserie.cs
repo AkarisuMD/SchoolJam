@@ -28,9 +28,13 @@ public class Patisserie : Singleton<Patisserie>
     [SerializeField] private Image Choice2Image;
     [SerializeField] private Image Choice3Image;
 
+    public GameObject player;
 
     private void OnMouseUp()
     {
+        player.GetComponent<PlayerBehaviour>().ClearActions();
+        player.GetComponent<PlayerBehaviour>().isGoingToPastries = true;
+
         if (inUse)
         {
             if (!isFinish) return;
