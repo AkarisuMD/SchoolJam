@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 185441258}
-  m_IndirectSpecularColor: {r: 0.5553649, g: 0.43653136, b: 0.56025356, a: 1}
+  m_IndirectSpecularColor: {r: 0.5042345, g: 0.41891718, b: 0.5019715, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -202,7 +202,7 @@ PrefabInstance:
     - target: {fileID: 8513949316563910096, guid: 23cf315b29a45ba4ca746264fab2fb35,
         type: 3}
       propertyPath: TimeOfDay
-      value: 14.5
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -431,11 +431,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightningScene
       objectReference: {fileID: 0}
-    - target: {fileID: 2311810357740373417, guid: c2fb382a9dcb93140bfe0cba2a775066,
-        type: 3}
-      propertyPath: m_Lightmapping
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3836783670229471415, guid: c2fb382a9dcb93140bfe0cba2a775066,
         type: 3}
       propertyPath: m_RootOrder
@@ -494,22 +489,47 @@ PrefabInstance:
     - target: {fileID: 5970577607444763279, guid: c2fb382a9dcb93140bfe0cba2a775066,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.038548026
+      value: 0.022557585
       objectReference: {fileID: 0}
     - target: {fileID: 5970577607444763279, guid: c2fb382a9dcb93140bfe0cba2a775066,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.07816767
+      value: 0.08418604
       objectReference: {fileID: 0}
     - target: {fileID: 5970577607444763279, guid: c2fb382a9dcb93140bfe0cba2a775066,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.44060564
+      value: 0.2578342
       objectReference: {fileID: 0}
     - target: {fileID: 5970577607444763279, guid: c2fb382a9dcb93140bfe0cba2a775066,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.8934599
+      value: -0.9622502
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567010779256418107, guid: c2fb382a9dcb93140bfe0cba2a775066,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567010779256418107, guid: c2fb382a9dcb93140bfe0cba2a775066,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567010779256418107, guid: c2fb382a9dcb93140bfe0cba2a775066,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567010779256418107, guid: c2fb382a9dcb93140bfe0cba2a775066,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00000047684
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567010779256418107, guid: c2fb382a9dcb93140bfe0cba2a775066,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00000023842
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
