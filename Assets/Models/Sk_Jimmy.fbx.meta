@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 21e804e690186fc42bd224fc48e2f7ce
+guid: 6b778c2173583f34480727fc58336bd2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_Propsing
-    second: {fileID: 2100000, guid: 58532d60012df714fac3e070a4139fff, type: 2}
+      name: M_Chara
+    second: {fileID: 2100000, guid: ee99d72ea9fde27428253a350ac216ef, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -103,7 +103,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
