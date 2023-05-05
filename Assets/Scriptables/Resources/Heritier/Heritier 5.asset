@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29dba10f6f7c70146847cca5b2d544aa, type: 3}
   m_Name: Heritier 5
   m_EditorClassIdentifier: 
-  go: {fileID: 1981131855061102, guid: 7ec354ef3daae7641b7a3fa5e1fe0c81, type: 3}
-  sprite: {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
+  go: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 7740890a62733bd479c011e36871f81e, type: 3}
   stats:
     multiplicateurDeSatisfaction: 1
-    multiplicateurTempsDePreparation: 1
-    vitesseDeDeplacement: 1
+    multiplicateurTempsDePreparation: 0.95
+    vitesseDeDeplacement: 0.95
     tempsSuplementaire: 0
     tableSup: 0
     stockageSup: 0
-  bonus: aaa
-  malus: bbb
+  bonus: x0.95 preparation time
+  malus: x0.95 speed
