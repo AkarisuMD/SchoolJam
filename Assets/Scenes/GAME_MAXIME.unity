@@ -5366,7 +5366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0.43190622, g: 0, b: 1, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
@@ -15646,7 +15646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0.43190622, g: 0, b: 1, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
@@ -18110,7 +18110,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!1 &1653368944
 GameObject:
@@ -20562,7 +20562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0.43190622, g: 0, b: 1, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
@@ -23674,7 +23674,6 @@ GameObject:
   - component: {fileID: 967774066433465699}
   - component: {fileID: 2748328223074552229}
   - component: {fileID: 2748328223074552231}
-  - component: {fileID: 2748328223074552232}
   - component: {fileID: 2748328223074552233}
   m_Layer: 0
   m_Name: CarrauxVitrine
@@ -25968,7 +25967,6 @@ GameObject:
   - component: {fileID: 3903994379279555659}
   - component: {fileID: 8905728728934221359}
   - component: {fileID: 8905728728934221361}
-  - component: {fileID: 8905728728934221363}
   - component: {fileID: 8905728728934221364}
   m_Layer: 0
   m_Name: MachineACafe.001
@@ -27853,24 +27851,6 @@ MonoBehaviour:
   Choice2Image: {fileID: 6968964361389794362}
   Choice3Image: {fileID: 9214254722335179243}
   player: {fileID: 2204664436313968282}
---- !u!114 &2748328223074552232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150750183278479476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0.43190622, g: 0, b: 1, a: 1}
-  outlineWidth: 8
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!65 &2748328223074552233
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28700,6 +28680,7 @@ GameObject:
   - component: {fileID: 2563156673671077273}
   - component: {fileID: 7523358796632638172}
   - component: {fileID: 7743713586036656498}
+  - component: {fileID: 7743713586036656499}
   m_Layer: 0
   m_Name: MachineACafe
   m_TagString: Untagged
@@ -31380,6 +31361,7 @@ GameObject:
   - component: {fileID: 3811264724964250170}
   - component: {fileID: 6777960832436858837}
   - component: {fileID: 3938658414000792681}
+  - component: {fileID: 6777960832436858838}
   m_Layer: 0
   m_Name: CarrauxVitrine
   m_TagString: Untagged
@@ -33334,6 +33316,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5233944345186994021}
   m_Mesh: {fileID: -95467688986114050, guid: aa69015179dbffd4cb0740a30fb562e2, type: 3}
+--- !u!114 &6777960832436858838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233944345186994021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!23 &6826492777964788850
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35106,6 +35106,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7743713586036656499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249887939400267753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7773597356703441597
 GameObject:
   m_ObjectHideFlags: 0
@@ -35240,9 +35258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 0.43137255, g: 0, b: 1, a: 1}
-  outlineWidth: 2
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -36507,24 +36525,6 @@ MonoBehaviour:
   Choice2Image: {fileID: 3116566686425400558}
   Choice3Image: {fileID: 4563897987439913304}
   player: {fileID: 2204664436313968282}
---- !u!114 &8905728728934221363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372284714765745994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0.43190622, g: 0, b: 1, a: 1}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!65 &8905728728934221364
 BoxCollider:
   m_ObjectHideFlags: 0

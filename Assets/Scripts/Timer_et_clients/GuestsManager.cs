@@ -227,6 +227,8 @@ faire des array pour fil d'attente, en commande, vers la table, a table, sort.
         yield return new WaitForSeconds(0.0001f);
         // animation de journée
         goChoixHeritier = Instantiate(Resources.Load<GameObject>("Menu/ChoixHeritier"));
+        yield return new WaitForSeconds(1);
+        DialogueManager.Instance.CallTuto();
     }
 
 }
