@@ -20,7 +20,9 @@ public class SpawnTimer : MonoBehaviour
     public bool HasStarted;
 
     public GameObject WIN;
+    public TMP_Text winText;
     public GameObject LOOSE;
+    public TMP_Text looseText;
 
     // Start is called before the first frame update
     public void Start()
@@ -54,12 +56,12 @@ public class SpawnTimer : MonoBehaviour
                 if (ResourceManager.Instance.Reputation > 1)
                 {
                     WIN.SetActive(true);
-                    WIN.GetComponent<TMP_Text>().text = $"You WON with {ResourceManager.Instance.Reputation}/2 reputation.";
+                    winText.GetComponent<TMP_Text>().text = $"You WON with {ResourceManager.Instance.Reputation}/2 reputation.";
                 }
                 else
                 {
                     LOOSE.SetActive(true);
-                    LOOSE.GetComponent<TMP_Text>().text = $"You LOOSE with {ResourceManager.Instance.Reputation}/2 reputation.";
+                    looseText.GetComponent<TMP_Text>().text = $"You LOOSE with {ResourceManager.Instance.Reputation}/2 reputation.";
                 }
             }
         }

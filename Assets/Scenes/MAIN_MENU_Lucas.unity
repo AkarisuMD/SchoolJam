@@ -3119,7 +3119,7 @@ PrefabInstance:
     - target: {fileID: 3836783670229471415, guid: c2fb382a9dcb93140bfe0cba2a775066,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.3
+      value: 11.26
       objectReference: {fileID: 0}
     - target: {fileID: 3836783670229471415, guid: c2fb382a9dcb93140bfe0cba2a775066,
         type: 3}
@@ -3129,7 +3129,7 @@ PrefabInstance:
     - target: {fileID: 3836783670229471415, guid: c2fb382a9dcb93140bfe0cba2a775066,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.3
+      value: -3.24
       objectReference: {fileID: 0}
     - target: {fileID: 3836783670229471415, guid: c2fb382a9dcb93140bfe0cba2a775066,
         type: 3}
@@ -6397,7 +6397,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: aa69015179dbffd4cb0740a30fb562e2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.81
+      value: 0.1500001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa69015179dbffd4cb0740a30fb562e2,
         type: 3}
@@ -6407,7 +6407,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: aa69015179dbffd4cb0740a30fb562e2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.48
+      value: 0.58000016
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa69015179dbffd4cb0740a30fb562e2,
         type: 3}
@@ -8177,7 +8177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1796710332
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8211,7 +8211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 0.6117647}
+  m_Color: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 0.6117647}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
