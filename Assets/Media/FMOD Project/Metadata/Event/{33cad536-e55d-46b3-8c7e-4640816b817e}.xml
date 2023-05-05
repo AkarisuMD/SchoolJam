@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{33cad536-e55d-46b3-8c7e-4640816b817e}">
 		<property name="name">
-			<value>MusiqueMenu</value>
+			<value>MusiqueMenuAncienne</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -28,6 +28,9 @@
 		<relationship name="timeline">
 			<destination>{7cce55b4-e6d2-4075-a55d-d848f9dacac2}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{ff0c6a9c-fab1-45c2-a4e3-b1ea7408a2f4}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{66f52d12-8ba5-4a7c-9ac8-0c57529fc02a}">
 		<relationship name="masterBus">
@@ -50,7 +53,7 @@
 			<destination>{862854fe-73dd-4e24-bc3b-9688d8ac47b0}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{12136644-2aed-4c24-8783-2ca45af5f32c}</destination>
+			<destination>{cd8c81ca-e11a-4112-b33c-bd122cdd59e5}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{7b6d90e0-de1c-4500-99f4-764ff5c70b26}" />
@@ -62,7 +65,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{4a215aaa-2973-4208-9170-284f974386ae}">
 		<property name="volume">
-			<value>6</value>
+			<value>-13</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{d1bbaeac-5a6e-48fb-a844-c4082bd90c73}</destination>
