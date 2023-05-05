@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnTimer : MonoBehaviour
 {
@@ -14,34 +15,45 @@ public class SpawnTimer : MonoBehaviour
     public float timerTime;
     public Color timerColor;
 
+    public bool isDayNight;
+    public bool HasStarted;
     // Start is called before the first frame update
     public void Start()
     {
         timerSpawned = Instantiate(timerPrefab, new Vector3(this.transform.parent.transform.position.x - 1.5f, 5, this.transform.parent.transform.position.z - 2.25f), Quaternion.Euler(45, 45, 0), this.gameObject.transform.parent.transform);
         aiguille = timerSpawned.transform.GetChild(0).gameObject;
+        aiguille.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         timerSpawned.SetActive(false);
         timerColor = timerSpawned.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().material.color;
+        HasStarted = false;
     }
 
     // Update is called once per frame
     public void Update()
     {
-        if(time > 0)
+        if(timerTime > 0)
         {
             timerTime -= Time.deltaTime;
-            time = timerLenght - timerTime;
 
-            aiguille.transform.localRotation = Quaternion.Euler(0, 0, timerLenght * timerSpeed);
+            aiguille.transform.localRotation = Quaternion.AngleAxis(timerTime * timerSpeed, Vector3.forward);
+        }
+        else
+        {
+            if(isDayNight && HasStarted)
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 
     public void StartTimer()
     {
-        timerSpeed = aiguille.transform.rotation.z / timerLenght;
+        HasStarted = true;
+        timerSpeed = 360 / timerLenght;
         timerTime = timerLenght;
         timerSpawned.SetActive(true);
 
-        if(time <= timerLenght / 4)
+        if(timerTime <= timerLenght / 4)
         {
             timerColor.r += Time.deltaTime * timerSpeed;
         }
